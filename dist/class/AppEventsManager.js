@@ -81,12 +81,12 @@ export default class AppEventsManager {
             const mousePos = this.positions.mouse;
             if (buttons.leftClick) {
                 this.flags.lmb = false;
+                const selectedNodes = this.selectedNodes;
                 const { holdMouseStart, holdMouseEnd } = this.positions;
                 const isNotDragged = holdMouseStart && holdMouseEnd &&
                     (holdMouseStart.x === holdMouseEnd.x &&
                         holdMouseStart.y === holdMouseEnd.y);
                 if (isNotDragged) {
-                    const selectedNodes = this.selectedNodes;
                     const mousePosNode = this.app.nodeManager.getNodeByPosition(mousePos.x, mousePos.y);
                     if (!mousePosNode ||
                         (mousePosNode && !selectedNodes.includes(mousePosNode))) {
@@ -98,7 +98,9 @@ export default class AppEventsManager {
                     this.flags.selectLocked = false;
                 }
                 else {
-                    this.flags.selectLocked = true;
+                    if (selectedNodes.length > 0) {
+                        this.flags.selectLocked = true;
+                    }
                 }
             }
             if (buttons.rightClick) {
