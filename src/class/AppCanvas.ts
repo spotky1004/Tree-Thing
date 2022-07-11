@@ -227,9 +227,9 @@ export default class AppCanvas {
 
   drawSelectedSquare(canvasAttr: GlobalAttrs) {
     const eventsManager = this.app.eventsManager;
-    const { lmb, spaceKey } = eventsManager.flags;
+    const { lmb, spaceKey, selectLocked } = eventsManager.flags;
     const { holdMouseStart, holdMouseEnd } = eventsManager.positions;
-    if (!lmb || spaceKey || !holdMouseStart || !holdMouseEnd) return;
+    if (selectLocked || !lmb || spaceKey || !holdMouseStart || !holdMouseEnd) return;
 
     const { x: x1, y: y1 } = localAttrToGlobalAttr(holdMouseStart, canvasAttr);
     const { x: x2, y: y2 } = localAttrToGlobalAttr(holdMouseEnd, canvasAttr);

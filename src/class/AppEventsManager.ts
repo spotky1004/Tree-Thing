@@ -7,6 +7,7 @@ interface EventFlags {
   lmb: boolean;
   wheel: boolean;
   spaceKey: boolean;
+  selectLocked: boolean;
 }
 
 interface EventPositions {
@@ -32,7 +33,8 @@ export default class AppEventsManager {
     this.flags = {
       lmb: false,
       wheel: false,
-      spaceKey: false
+      spaceKey: false,
+      selectLocked: false,
     };
     this.positions = {
       absMouse: { x: 0, y: 0 },
@@ -112,7 +114,7 @@ export default class AppEventsManager {
         const isNotDragged =
           holdMouseStart && holdMouseEnd &&
           (
-            holdMouseStart.x === holdMouseEnd.x ||
+            holdMouseStart.x === holdMouseEnd.x &&
             holdMouseStart.y === holdMouseEnd.y
           );
         if (isNotDragged) {
@@ -127,6 +129,9 @@ export default class AppEventsManager {
             selectedNodes.splice(0, this.selectedNodes.length);
             this.app.nodeManager.nodeList.applyFilter(_ => true);
           }
+          this.flags.selectLocked = false;
+        } else {
+          this.flags.selectLocked = true;
         }
       }
       if (buttons.rightClick) {
@@ -255,7 +260,7 @@ export default class AppEventsManager {
     if (this.flags.lmb) {
       this.positions.holdMouseEnd = {...to};
     }
-    if (!spaceKey) {
+    if (!this.flags.selectLocked && !spaceKey) {
       const selectedRect = this.getSelectRect();
       if (this.flags.lmb && selectedRect) {
         const { x1, y1, x2, y2 } = selectedRect;
