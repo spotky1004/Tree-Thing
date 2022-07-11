@@ -160,8 +160,13 @@ export default class AppEventsManager {
       e.preventDefault();
     });
     this.canvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
       this.wheel(e.deltaY);
       this.app.render();
+    }, {
+      passive: false
     });
     this.app.fileSelect.addEventListener("change", () => {
       const fileList = this.app.fileSelect.files;
