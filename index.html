@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./build/index.js" type="module"></script>
+  <link rel="stylesheet" href="./index.css">
+  <script defer src="./assets/fontawesome/all.min.js" crossorigin="anonymous"></script>
+  <title>Tree</title>
+</head>
+<body>
+  <canvas id="canvas">
+    This browser 🌲
+  </canvas>
+  <div id="line-info">
+    <div class="line-info__item">
+      <span class="color-box" style="--size: 2vh; --color: #e3931b;"></span>
+      Depends on
+    </div>
+    <div class="line-info__item">
+      <span class="color-box" style="--size: 2vh; --color: #54e31b;"></span>
+      Is used by
+    </div>
+  </div>
+  <div id="toolbar">
+    <span class="toolbar__item" style="--idx: 0;" onclick="document.getElementById('file-select').click()">
+      <i class="fa-solid fa-file-arrow-down"></i>
+      <input style="display: none;" id="file-select" type="file" accept=".json, .txt">
+    </span>
+    <span class="toolbar__item" style="--idx: 1;" onclick="this.classList.toggle('active'); document.getElementById('search-box').classList.toggle('hidden'); document.getElementById('search-input').value = ''">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </span>
+    <span id="change-layout" class="toolbar__item" style="--idx: 2;">
+      <i class="fa-solid fa-circle-nodes"></i>
+    </span>
+    <span id="list-open" class="toolbar__item" style="--idx: 3;" onclick="this.classList.toggle('active'); document.getElementById('node-list').classList.toggle('hidden');">
+      <i class="fa-solid fa-list"></i>
+    </span>
+  </div>
+  <div id="search-box" class="hidden">
+    Search <input id="search-input" type="text" hint="node to search..."/>
+  </div>
+  <div id="help" onclick="this.classList.toggle('active')">
+    <div id="help__open">
+      Commands
+    </div>
+    <div id="help__list">
+      <div class="help__list__block">
+        <span class="help__list__command">Wheel</span>: Zoom Screen
+      </div>
+      <div class="help__list__block">
+        <span class="help__list__command">Wheel + Drag</span>: Move Screen
+      </div>
+      <div class="help__list__block">
+        <span class="help__list__command">LMB Drag</span>: Select Node
+      </div>
+      <div class="help__list__block">
+        <span class="help__list__command">Select & Space + Drag</span>: Move Node
+      </div>
+      <div class="help__list__block">
+        <span class="help__list__command">Select & RMB Drag</span>: Zoom Node
+      </div>
+    </div>
+  </div>
+  <div id="node-list" class="hidden">
+    <div class="node-list__item">
+      <span class="node-list__item__idx">
+        #9999
+      </span>
+      <span class="node-list__item__names">
+        <div class="node-list__item__file-name">
+          asdf
+        </div>
+        <div class="node-list__item__assembly-name">
+          asdfasdasfas
+        </div>
+      </span>
+    </div>
+    <div class="node-list__item active">
+      <span class="node-list__item__idx">
+        #1
+      </span>
+      <span class="node-list__item__names">
+        <div class="node-list__item__file-name">
+          vvvv
+        </div>
+        <div class="node-list__item__assembly-name">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio offi
+        </div>
+      </span>
+    </div>
+    <div id="node-info">
+      <div id="node-info__general">
+        <span>9999</span>/<span>0999</span>
+      </div>
+      <div id="node-info__depends-on-divider">
+        Depends On
+      </div>
+      <div id="node-info__depends-on">
+        <div>A</div>
+        <div>C</div>
+      </div>
+      <div id="node-info__is-used-by-divider">
+        Is Used By
+      </div>
+      <div id="node-info__is-used-by">
+        <div>B</div>
+        <div>D</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

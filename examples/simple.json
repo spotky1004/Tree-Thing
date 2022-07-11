@@ -1,0 +1,47 @@
+{
+  "A, Assembly-CSharp": {
+    "isUsedBy": [
+      "B, Assembly-CSharp-Editor"
+    ],
+    "dependsOn": [
+      "C, Assembly-firstpass",
+      "D, Google.Play.Common"
+    ]
+  },
+  "B, Assembly-CSharp-Editor": {
+    "isUsedBy": [
+      "C, Assembly-firstpass"
+    ],
+    "dependsOn": [
+      "D, Google.Play.Common"
+    ]
+  },
+  "C, Assembly-firstpass": {
+    "isUsedBy": [
+      "A, Assembly-CSharp",
+      "D, Google.Play.Common"
+    ],
+    "dependsOn": [
+    ]
+  },
+  "D, Google.Play.Common": {
+    "isUsedBy": [
+      "A, Assembly-CSharp",
+      "B, Assembly-CSharp-Editor"
+    ],
+    "dependsOn": [
+      "C, Assembly-firstpass"
+    ]
+  },
+  "E, ASDF": {
+    "isUsedBy": [
+      "A, Assembly-CSharp",
+      "B, Assembly-CSharp-Editor",
+      "C, Assembly-firstpass",
+      "D, Google.Play.Common"
+    ],
+    "dependsOn": [
+      
+    ]
+  }
+}
